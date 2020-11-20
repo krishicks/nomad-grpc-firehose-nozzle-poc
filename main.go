@@ -58,16 +58,29 @@ func main() {
 		Index: 0,
 		Topics: []*pbstream.TopicFilter{
 			{
-				// Receive all available events
+				// // Receive all available events
 				Topic: pbstream.Topic_All,
 
-				// Receive only Deployment-related events
+				// // Receive only Deployment-related events
 				// Topic: pbstream.Topic_Deployment,
 
-				// Receive only Job-related events that match the FilterKeys (the job ID/name)
+				// // Receive only Job-related events that match the FilterKeys (the job ID/name)
 				// Topic:      pbstream.Topic_Job,
 				// FilterKeys: []string{"my-job"},
+
+				// // Receive any events matching "my-key"
+				// Topic:      pbstream.Topic_All,
+				// FilterKeys: []string{"my-key"},
 			},
+
+			// // Comment the above TopicFilter and uncomment these two to receive
+			// // Deployment and Job-related events
+			// {
+			// 	Topic: pbstream.Topic_Job,
+			// },
+			// {
+			// 	Topic: pbstream.Topic_Deployment,
+			// },
 		},
 	})
 	if err != nil {
