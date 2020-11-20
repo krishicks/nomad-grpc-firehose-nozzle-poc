@@ -10,7 +10,7 @@ git clone git@github.com:krishicks/nomad-grpc-firehose-nozzle-poc
 ```
 
 ## Build and run Nomad
-Using this requires building Nomad off of an as-yet unmerged branch, stream/event-sink.
+Using this requires building Nomad off of an as-yet unmerged branch, event/proto-service.
 
 ```
 git clone git@github.com:hashicorp/nomad
