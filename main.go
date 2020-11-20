@@ -19,13 +19,14 @@ func main() {
 	// TLS setup
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
+	// these certs were copied from nomad/dev/tls_cluster/certs
 	certificate, err := tls.LoadX509KeyPair(
-		"../nomad/dev/tls_cluster/certs/server.pem",
-		"../nomad/dev/tls_cluster/certs/server-key.pem",
+		"server.pem",
+		"server-key.pem",
 	)
 
 	certPool := x509.NewCertPool()
-	bs, err := ioutil.ReadFile("../nomad/dev/tls_cluster/certs/nomad-ca.pem")
+	bs, err := ioutil.ReadFile("nomad-ca.pem")
 	if err != nil {
 		log.Fatalf("failed to read ca cert: %s", err)
 	}
