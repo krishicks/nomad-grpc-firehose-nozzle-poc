@@ -19,12 +19,6 @@ func main() {
 	// TLS setup
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
-	// these certs were copied from nomad/dev/tls_cluster/certs
-	certificate, err := tls.LoadX509KeyPair(
-		"server.pem",
-		"server-key.pem",
-	)
-
 	certPool := x509.NewCertPool()
 	bs, err := ioutil.ReadFile("nomad-ca.pem")
 	if err != nil {
@@ -37,9 +31,8 @@ func main() {
 	}
 
 	transportCreds := credentials.NewTLS(&tls.Config{
-		ServerName:   "localhost",
-		Certificates: []tls.Certificate{certificate},
-		RootCAs:      certPool,
+		ServerName: "localhost",
+		RootCAs:    certPool,
 	})
 
 	// gRPC dial Nomad's HTTP endpoint
