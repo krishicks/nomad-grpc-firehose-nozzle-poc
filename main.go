@@ -20,6 +20,9 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
 	certPool := x509.NewCertPool()
+
+	// this is necessary if using the provided server.hcl to start Nomad, as it
+	// is a self-signed CA cert
 	bs, err := ioutil.ReadFile("nomad-ca.pem")
 	if err != nil {
 		log.Fatalf("failed to read ca cert: %s", err)
